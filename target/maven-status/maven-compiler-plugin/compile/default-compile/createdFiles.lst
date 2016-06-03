@@ -1,0 +1,11 @@
+model\GenericResource.class
+model\Marshall.class
+model\Batch.class
+model\BatchDatabase.class
+model\Param.class
+model\CORSFilter.class
+model\Batches.class
+model\BatchService.class
+model\ApplicationConfig.class
+model\Test_property.class
+model\Input.class

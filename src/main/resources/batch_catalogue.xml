@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Spécification des batchs
+-->
+
+<CATALOG>
+    <BATCH>
+        <CODE>07J</CODE>
+        <NAME>Batch num 7 - extraction 7</NAME>
+        <DESCRIPTION>USA</DESCRIPTION>
+        <OUTPUT>Fichier xls</OUTPUT>
+        <INPUT>
+            <PARAM>
+                <!-- référence Mora du produit -->
+                <PARAMNAME>refMora</PARAMNAME>
+                <DEFAULTVALUE></DEFAULTVALUE>
+                <LABEL>Référence Mora</LABEL>
+            </PARAM>
+            <PARAM>
+                <!-- Début de la période -->
+                <PARAMNAME>date1</PARAMNAME>
+                <DEFAULTVALUE></DEFAULTVALUE>
+                <LABEL>Début de la période</LABEL>
+            </PARAM>
+            <PARAM>
+                <!-- Fin de la période -->
+                <PARAMNAME>date2</PARAMNAME>
+                <DEFAULTVALUE></DEFAULTVALUE>
+                <LABEL>Fin de la période</LABEL>
+            </PARAM>
+        </INPUT>
+    </BATCH>
+
+    <BATCH>
+        <CODE>08M</CODE>
+        <NAME>Batch num 8 - extraction 8</NAME>
+        <DESCRIPTION>USA</DESCRIPTION>
+        <OUTPUT>Fichier xls</OUTPUT>
+        <INPUT>
+            <PARAM>
+                <!-- code Client -->
+                <PARAMNAME>codeClient</PARAMNAME>
+                <DEFAULTVALUE></DEFAULTVALUE>
+                <LABEL>Code client</LABEL>
+            </PARAM>
+        </INPUT>
+    </BATCH>
+    
+    <BATCH>
+        <CODE>09T</CODE>
+        <NAME>Batch num 8 - extraction 8</NAME>
+        <DESCRIPTION>USA</DESCRIPTION>
+        <OUTPUT>Fichier xls</OUTPUT>
+        <INPUT>
+            <PARAM>
+                <!-- code Client -->
+                <PARAMNAME>codeClient</PARAMNAME>
+                <DEFAULTVALUE></DEFAULTVALUE>
+                <LABEL>Code client</LABEL>
+            </PARAM>
+        </INPUT>
+    </BATCH>
+
+
+</CATALOG>
