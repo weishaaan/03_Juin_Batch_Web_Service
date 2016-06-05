@@ -131,7 +131,7 @@ public class GenericResource {
         //System.out.println(filepath);
         String result = r.runBatFile(filepath);                        
 	return result + " ! it works!!! ";      
-   }
+    }
     
     @POST
     @Path("runBatch")

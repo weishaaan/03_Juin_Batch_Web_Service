@@ -80,15 +80,19 @@ public class Marshall {
             System.out.println("Batch ");
             System.out.println("code is " +btc.getCode()+",name is"+btc.getName()+
                     ",description is "+btc.getDescription()+",input is ");
-            for(int j = 0 ; j < btc.getInput().getParams().size(); j++){
-                Param p = btc.getInput().getParams().get(j);
-                System.out.println("-------------------");
-                System.out.println("the "+ j +" param is : ");
-                System.out.println("param name is : " + p.PARAMNAME);
-                System.out.println("PARAM DEFAULT : " + p.DEFAULTVALUE);
-                System.out.println("PARAM label : " + p.LABEL);
+            if(btc.getInput().getParams() == null){
+                 System.out.println(" NULL");
+            }else{
+                for (int j = 0; j < btc.getInput().getParams().size(); j++) {
+                    Param p = btc.getInput().getParams().get(j);
+                    System.out.println("-------------------");
+                    System.out.println("the " + j + " param is : ");
+                    System.out.println("param name is : " + p.PARAMNAME);
+                    System.out.println("PARAM DEFAULT : " + p.DEFAULTVALUE);
+                    System.out.println("PARAM label : " + p.LABEL);
+                }
+                System.out.println("*********************************");
             }
-            System.out.println("*********************************");
         }
         return batches;
     }

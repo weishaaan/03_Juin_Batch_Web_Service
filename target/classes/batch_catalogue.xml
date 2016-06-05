@@ -53,12 +53,6 @@ Spécification des batchs
         <DESCRIPTION>USA</DESCRIPTION>
         <OUTPUT>Fichier xls</OUTPUT>
         <INPUT>
-            <PARAM>
-                <!-- code Client -->
-                <PARAMNAME>codeClient</PARAMNAME>
-                <DEFAULTVALUE></DEFAULTVALUE>
-                <LABEL>Code client</LABEL>
-            </PARAM>
         </INPUT>
     </BATCH>
 

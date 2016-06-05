@@ -1,4 +1,3 @@
-
 import static com.jayway.restassured.RestAssured.expect;
 import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.get;
@@ -11,6 +10,8 @@ import model.*;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.path.json.JsonPath;
 import com.jayway.restassured.response.Response;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Path;
 import static org.junit.Assert.assertEquals;
@@ -22,6 +23,8 @@ public class TestBatch{
         RestAssuredUtil.setup();
     }
 
+    
+    /****************************GET********************************************/
     @Test
     public void test_GetAllBatch(){
         Response res = get("/getAllBatch");
@@ -59,8 +62,8 @@ public class TestBatch{
         assertEquals("",                            jp.get("INPUT[2].PARAM[0].DEFAULTVALUE"));
         assertEquals("Code client",                 jp.get("INPUT[2].PARAM[0].LABEL"));     
         
-        
     }
+    
     @Test
     public void test_GetOneBatch_07J() {
         Response res = get("/getOneBatch/07J");
@@ -82,8 +85,7 @@ public class TestBatch{
         assertEquals("",                           jp.get("INPUT.PARAM[2].DEFAULTVALUE"));
         assertEquals("Fin de la période",          jp.get("INPUT.PARAM[2].LABEL"));   
     }
-    //pass
-    
+
     @Test
     public void test_GetOneBatch_08M() {
         expect().
@@ -100,9 +102,7 @@ public class TestBatch{
         when().
         get("/getOneBatch/08M");
     }
-    
-    //pass
-    
+
     //Or we can use JsonPath
     @Test
     public void test_GetOneBatch_09T() {
@@ -135,7 +135,7 @@ public class TestBatch{
     */       
             
     @Test
-    public void test_Batch_not_found()
+    public void test_Batch_Not_Found()
     {
         expect().
         statusCode(404).
@@ -143,5 +143,29 @@ public class TestBatch{
         get("/abc");
     }
 
-   
+    /****************************POST********************************************/
+    
+    @Test
+    public void test_RunBatch()
+    {
+        Batch btc = new Batch();
+        Input in = new Input();
+        Param p = new Param();
+        p.setDEFAULTVALUE("a");
+        p.setLABEL("b");
+        p.setPARAMNAME("c");
+        List<Param> lp = new ArrayList<Param>();
+        lp.add(p);
+        in.setParams(lp);
+        btc.setName(null);
+        btc.setDescription(null);
+        btc.setOutput(null);
+        btc.setInput(in);
+        
+        given().contentType( "application/json" )
+               .and()
+               .body( "run batch, then get the result is : null" )
+       .when().post( "/runBatch" );
+
+    }
 }
