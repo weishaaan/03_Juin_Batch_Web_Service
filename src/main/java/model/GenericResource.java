@@ -40,7 +40,7 @@ public class GenericResource {
     
     BatchService batchService;
     Test_property r = new Test_property();  
-
+    MessageService messageService = new MessageService();  
     public GenericResource() throws JAXBException, IOException, XmlException {
         this.batchService = new BatchService();
     }
@@ -146,8 +146,26 @@ public class GenericResource {
         //System.out.println(filepath);
         String result = r.runBatFile(filepath);
 	return    "run batch, then get the result is : "+result;       
-   }
+    }
+        
+    @POST
+    @Path("postBatchParam")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String postBatchParam(List<Param> params) throws XmlException, IOException{            
+        //r.createProperties();     
+        System.out.println("post batch param successfully! the no. of params is " + params.size());
+        return    "post succesfully! the first para name is "+ params.get(0).PARAMNAME;       
+    }
     
+    @POST
+    @Path("postMessage")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Message> postMessage(Message message) throws IOException{
+        messageService.addMessage(message);
+        return messageService.getAllMessagges();
+    }
     
 }
     
