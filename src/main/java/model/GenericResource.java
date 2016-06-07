@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
 import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
 import javax.management.monitor.Monitor;
@@ -31,9 +33,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.bind.JAXBException;
+import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlException;
 import org.eclipse.jetty.server.Request;
 import static org.glassfish.jersey.server.model.Parameter.Source.PATH;
+import com.google.gson.Gson;
+import java.util.ArrayList;
 
 @Path("home")
 public class GenericResource {
@@ -41,6 +47,8 @@ public class GenericResource {
     BatchService batchService;
     Test_property r = new Test_property();  
     MessageService messageService = new MessageService();  
+    private static Logger logger = Logger.getLogger(BatchService.class);
+    
     public GenericResource() throws JAXBException, IOException, XmlException {
         this.batchService = new BatchService();
     }
@@ -107,13 +115,6 @@ public class GenericResource {
     public Batch getBatchByCode(@PathParam("code") String code)throws IOException, XmlException{
         return batchService.getBatch(code);
     }
-     
-    @GET
-    @Path("hello")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getBatchByCode(){
-        return "2:51pm";
-    }
     
     @GET
     @Path("getAllBatch")
@@ -121,7 +122,14 @@ public class GenericResource {
     public List<Batch> getAllBatch() throws IOException{
         return batchService.getAllBatches();
     }
-    
+    @POST
+    @Path("postMessage")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Message> postMessage(Message message) throws IOException{
+        messageService.addMessage(message);
+        return messageService.getAllMessagges();
+    }
     @GET
     @Path("Batch")
     @Produces(MediaType.TEXT_PLAIN)
@@ -137,35 +145,73 @@ public class GenericResource {
     @Path("runBatch")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String runBat(Batch batch) throws XmlException, IOException{            
+    public String runBat(Batch batch){            
         //r.createProperties();     
-        System.out.println("input code of Batch file is " + batch.code);
-        Batch bbatch = batchService.getBatch("08M");
         
-        String filepath = r.readProperties("text");
-        //System.out.println(filepath);
-        String result = r.runBatFile(filepath);
-	return    "run batch, then get the result is : "+result;       
+        try {
+            batch = batchService.getBatch("08M");
+            
+        } catch (XmlException ex) {
+            java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("Wrong, can't $POST successfully to web service."); 
+            
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("Wrong, can't $POST successfully to web service.");  
+        }
+            String filepath = r.readProperties("text");
+            String result = r.runBatFile(filepath);
+            
+            logger.info("Run batch file successsfully!");
+            logger.info("The batch code is: "+ batch.code + ".");
+            logger.info("This batch file doesn't have any params.");
+            logger.info("The running result is: "+ result + ".");
+            
+            return    "Run batch, and the result is : "+result; 
     }
         
     @POST
     @Path("postBatchParam")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String postBatchParam(List<Param> params) throws XmlException, IOException{            
-        //r.createProperties();     
-        System.out.println("post batch param successfully! the no. of params is " + params.size());
-        return    "post succesfully! the first para name is "+ params.get(0).PARAMNAME;       
+    public String postBatchParam(List<ParamPost> paramPosts){    
+        
+        Batch btc= new Batch();
+        
+        try {
+            btc = batchService.getBatch(paramPosts.get(0).paramCode);
+                
+        } catch (XmlException ex) {
+            java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("Wrong, can't get the batch file."); 
+            
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("Wrong, can't get the batch file"); 
+        }
+        
+        Gson gson = new Gson();
+        String paramPostList = gson.toJson(paramPosts);
+        
+        logger.info("Successfully $POST params to web service!");
+        logger.info("The batch code is " + btc.code);
+        logger.info("Those params are: "+ paramPostList); 
+
+        System.out.println("Successfully $POST params to web service!");
+        System.out.println("The batch code is " + paramPosts.get(0).paramCode);
+        System.out.println("web service receives list (in Json format): " + paramPostList);
+
+        for(int j = 1 ;j< paramPosts.size(); j++){
+            System.out.println("paramPosts.get(j).paramPostValue :" + paramPosts.get(j).paramPostValue);
+            btc.getInput().getParams().get(j-1).setDEFAULTVALUE(paramPosts.get(j).paramPostValue);
+        }
+                
+
+        return  "Post succesfully! the changed default value is :"+ btc.getInput().getParams().get(0).DEFAULTVALUE;  
+        
     }
     
-    @POST
-    @Path("postMessage")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public List<Message> postMessage(Message message) throws IOException{
-        messageService.addMessage(message);
-        return messageService.getAllMessagges();
-    }
+    
     
 }
     

@@ -8,7 +8,6 @@
     <name>BatchMvnWeb Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -21,12 +20,11 @@
             <version>2.0</version>
             <scope>provided</scope>
         </dependency>
-<dependency>
-    <groupId>javax.ws.rs</groupId>
-    <artifactId>javax.ws.rs-api</artifactId>
-    <version>2.0</version>
-</dependency>
-
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0</version>
+        </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
@@ -53,52 +51,74 @@
             <artifactId>xbean</artifactId>
             <version>2.2.0</version>
         </dependency>
-
-
         <dependency>
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>java-property-utils</artifactId>
             <version>1.9.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
             <version>9.3.6.v20151106</version>
             <type>jar</type>
         </dependency>
-         <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-servlets</artifactId>
-        <version>9.3.9.M1</version>
-        <scope>test</scope>
-    </dependency>
-
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+            <version>9.3.9.M1</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.owlike</groupId>
             <artifactId>genson</artifactId>
             <version>1.4</version>
-          </dependency>
-
-        
+        </dependency>
         <dependency>
-    <groupId>com.sun.jersey</groupId>
-    <artifactId>jersey-server</artifactId>
-    <version>1.2</version>
-</dependency>
-
-<dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.6</version>
+        </dependency>
+<!-- http://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.21</version>
+</dependency>
+<!-- http://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-log4j12</artifactId>
+    <version>1.7.21</version>
+</dependency>
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
 
 <dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.4</version>
-</dependency>
-        
+    	<groupId>com.google.code.gson</groupId>
+    	<artifactId>gson</artifactId>
+    	<version>2.6.2</version>
+	</dependency>
+
+
     </dependencies>
     
     
