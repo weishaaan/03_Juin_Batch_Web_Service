@@ -48,55 +48,13 @@ public class GenericResource {
     Test_property r = new Test_property();  
     MessageService messageService = new MessageService();  
     private static Logger logger = Logger.getLogger(BatchService.class);
+    QuartzTrigger trigger = new QuartzTrigger();
     
     public GenericResource() throws JAXBException, IOException, XmlException {
         this.batchService = new BatchService();
     }
-
     
-    /*
-    
-    @GET
-    @Produces(MediaType.APPLICATION_XML) //MediaType.APPLICATION_XML
-    public List<Message> getMessages(){
-        return messageService.getAllMessagges();
-    }
-
-    @GET
-    @Path("/{messageId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Message getMessage(@PathParam("messageId") long messageId){
-        return messageService.getMessage(messageId);
-    }
-    
-    
-*/
-   
-  /*  
-    @PUT
-    @Path("/{messageId}")
-    @Produces(MediaType.APPLICATION_XML)
-    @Consumes(MediaType.APPLICATION_XML)
-    public Message updateMessage(@PathParam("messageId") long messageId,Message message){
-        message.setId(messageId);
-        return messageService.updateMessage(message);
-    }
-    
-    @DELETE
-    @Path("/{messageId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Message delectMessage(@PathParam("messageId") long messageId){
-        return messageService.removeMessage(messageId);
-    }
   
-    
-    @OPTIONS
-    public Response getOptions() {
-      return Response.ok()
-        .header("Access-Control-Allow-Origin", "*")
-        .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
-        .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
-    }
     /***************************TEXT PLAIN**************************************/
     @POST
     @Path("code")
@@ -211,7 +169,64 @@ public class GenericResource {
         
     }
     
+    @GET
+    @Path("quartz")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String doQuartzTrigger(){           
+        try {
+            trigger.QuartzTrigger();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+	return "Quartz works!!! ";      
+    }
     
+    @POST
+    @Path("postBatchParam")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String postNameRunBat(List<ParamPost> paramPosts){    
+        
+        Batch btc= new Batch();
+        
+        try {
+            btc = batchService.getBatch(paramPosts.get(0).paramCode);
+                
+        } catch (XmlException ex) {
+            java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("Wrong, can't get the batch file."); 
+            
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("Wrong, can't get the batch file"); 
+        }
+        
+        Gson gson = new Gson();
+        String paramPostList = gson.toJson(paramPosts);
+        
+        logger.info("Successfully $POST params to web service!");
+        logger.info("The batch code is " + btc.code);
+        logger.info("Those params are: "+ paramPostList); 
+
+        System.out.println("Successfully $POST params to web service!");
+        System.out.println("The batch code is " + paramPosts.get(0).paramCode);
+        System.out.println("web service receives list (in Json format): " + paramPostList);
+
+        for(int j = 1 ;j< paramPosts.size(); j++){
+            System.out.println("paramPosts.get(j).paramPostValue :" + paramPosts.get(j).paramPostValue);
+            btc.getInput().getParams().get(j-1).setDEFAULTVALUE(paramPosts.get(j).paramPostValue);
+        }
+        
+        String filepath = r.readProperties("test");
+        System.out.println(filepath);
+        filepath = filepath +" " + btc.getInput().getParams().get(0).DEFAULTVALUE;
+        String result = r.runBatFile(filepath);                        
+	return  "the result is: " + result ; 
+
+        //return  "Post succesfully! the changed default value is :"+ btc.getInput().getParams().get(0).DEFAULTVALUE;  
+        
+    }
     
 }
     

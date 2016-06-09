@@ -55,6 +55,21 @@ Spécification des batchs
         <INPUT>
         </INPUT>
     </BATCH>
+    
+    <BATCH>
+        <CODE>10S</CODE>
+        <NAME>Batch num 10 - extraction 10</NAME>
+        <DESCRIPTION>FRANCE</DESCRIPTION>
+        <OUTPUT>Fichier xls</OUTPUT>
+        <INPUT>
+            <PARAM>
+                <!-- code Client -->
+                <PARAMNAME>nameClient</PARAMNAME> 
+                <DEFAULTVALUE></DEFAULTVALUE> 
+                <LABEL>Name of Client</LABEL> 
+            </PARAM>
+        </INPUT>
+    </BATCH>
 
 
 </CATALOG>

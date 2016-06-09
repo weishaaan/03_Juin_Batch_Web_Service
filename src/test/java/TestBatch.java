@@ -58,9 +58,6 @@ public class TestBatch{
         assertEquals("Batch num 8 - extraction 8",  jp.get("NAME[2]"));
         assertEquals("USA",                         jp.get("DESCRIPTION[2]"));
         assertEquals("Fichier xls",                 jp.get("OUTPUT[2]"));
-        assertEquals("codeClient",                  jp.get("INPUT[2].PARAM[0].PARAMNAME"));
-        assertEquals("",                            jp.get("INPUT[2].PARAM[0].DEFAULTVALUE"));
-        assertEquals("Code client",                 jp.get("INPUT[2].PARAM[0].LABEL"));     
         
     }
     
@@ -113,10 +110,7 @@ public class TestBatch{
         assertEquals("09T",                         jp.get("CODE"));
         assertEquals("Batch num 8 - extraction 8",  jp.get("NAME"));
         assertEquals("USA",                         jp.get("DESCRIPTION"));
-        assertEquals("Fichier xls",                 jp.get("OUTPUT"));
-        assertEquals("codeClient",                  jp.get("INPUT.PARAM[0].PARAMNAME"));
-        assertEquals("",                            jp.get("INPUT.PARAM[0].DEFAULTVALUE"));
-        assertEquals("Code client",                 jp.get("INPUT.PARAM[0].LABEL"));              
+        assertEquals("Fichier xls",                 jp.get("OUTPUT"));          
 
     }
 

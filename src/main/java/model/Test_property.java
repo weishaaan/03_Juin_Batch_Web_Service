@@ -39,7 +39,9 @@ public class Test_property {
             else if(property.equals("xml")){
                 path = prop.getProperty("xml.bat");
                 }
-            
+                else if(property.equals("batch_name.bat")){
+                    path = prop.getProperty("batch_name.bat");
+            }
             return path;
         }
 
