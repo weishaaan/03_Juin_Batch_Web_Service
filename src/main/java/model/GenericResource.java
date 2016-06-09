@@ -183,7 +183,7 @@ public class GenericResource {
     }
     
     @POST
-    @Path("postBatchParam")
+    @Path("postTestBatchParam")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public String postNameRunBat(List<ParamPost> paramPosts){    
@@ -218,7 +218,7 @@ public class GenericResource {
             btc.getInput().getParams().get(j-1).setDEFAULTVALUE(paramPosts.get(j).paramPostValue);
         }
         
-        String filepath = r.readProperties("test");
+        String filepath = r.readProperties("batch_name.bat");
         System.out.println(filepath);
         filepath = filepath +" " + btc.getInput().getParams().get(0).DEFAULTVALUE;
         String result = r.runBatFile(filepath);                        
