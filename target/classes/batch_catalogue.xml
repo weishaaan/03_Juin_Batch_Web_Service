@@ -14,7 +14,7 @@ Spécification des batchs
             <PARAM>
                 <!-- référence Mora du produit -->
                 <PARAMNAME>refMora</PARAMNAME>
-                <DEFAULTVALUE></DEFAULTVALUE>
+                <DEFAULTVALUE>123455</DEFAULTVALUE>
                 <LABEL>Référence Mora</LABEL>
             </PARAM>
             <PARAM>

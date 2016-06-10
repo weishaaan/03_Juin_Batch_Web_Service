@@ -220,7 +220,7 @@ public class GenericResource {
         
         String filepath = r.readProperties("batch_name.bat");
         System.out.println(filepath);
-        filepath = filepath +" " + btc.getInput().getParams().get(0).DEFAULTVALUE;
+        filepath = filepath +"  \"" + btc.getInput().getParams().get(0).DEFAULTVALUE + "\"" ;
         String result = r.runBatFile(filepath);                        
 	return  result ; 
 
