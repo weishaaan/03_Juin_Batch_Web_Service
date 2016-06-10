@@ -222,7 +222,7 @@ public class GenericResource {
         System.out.println(filepath);
         filepath = filepath +" " + btc.getInput().getParams().get(0).DEFAULTVALUE;
         String result = r.runBatFile(filepath);                        
-	return  "the result is: " + result ; 
+	return  result ; 
 
         //return  "Post succesfully! the changed default value is :"+ btc.getInput().getParams().get(0).DEFAULTVALUE;  
         
