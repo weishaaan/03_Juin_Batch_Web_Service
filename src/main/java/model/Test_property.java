@@ -58,7 +58,7 @@ public class Test_property {
         }
         
         public String runBatFile(String filepath){
-            String s = null;
+            String s = "";
             try {
                 String line;
                 Process p = Runtime.getRuntime().exec(filepath);
@@ -66,13 +66,14 @@ public class Test_property {
 
             while ((line = bri.readLine()) != null) {
                 System.out.println(line);
+                s = s + line + ",";
             }
             bri.close();
             //System.out.println("end of getInputStream.");
             //System.out.println();
             p.waitFor();
-            //s = "Exited with error code : (01 means before midi , 02 means after midi) "+String.format("%02d",p.exitValue());           
-            s = "please see the Netbeans console to see the result";
+            s = s + "Exited with error code : (01 means before midi , 02 means after midi) "+String.format("%02d",p.exitValue());           
+            //s = "please see the Netbeans console to see the result";
             }
             catch (Exception err) {
                 err.printStackTrace();
