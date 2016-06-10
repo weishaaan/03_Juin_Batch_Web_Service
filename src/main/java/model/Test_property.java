@@ -64,16 +64,20 @@ public class Test_property {
                 Process p = Runtime.getRuntime().exec(filepath);
                 BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-            while ((line = bri.readLine()) != null) {
-                System.out.println(line);
-                s = s + line + ",";
-            }
-            bri.close();
-            //System.out.println("end of getInputStream.");
-            //System.out.println();
-            p.waitFor();
-            s = s + "Exited with error code : (01 means before midi , 02 means after midi) "+String.format("%02d",p.exitValue());           
-            //s = "please see the Netbeans console to see the result";
+	        while ((line = bri.readLine()) != null) {
+	            System.out.println(line);
+	            s = s + line + ",";
+	        }
+	        bri.close();
+	        //System.out.println("end of getInputStream.");
+	            
+                p.waitFor();
+
+                if((String.format("%02d",p.exitValue()).equals("02")))
+                    s = s + "Exited with error code 02,and now it is after midi";
+                else{
+                    s = s + "Exited with error code 01,and now it is before midi";      
+                }
             }
             catch (Exception err) {
                 err.printStackTrace();
