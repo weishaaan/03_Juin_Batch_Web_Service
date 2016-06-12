@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 public class BatchService {
 
-    private Map<Long, Batch> catalogue = BatchDatabase.getBatches();
+    private Map<String, Batch> catalogue = BatchDatabase.getBatches();
     
     private static Logger logger = Logger.getLogger(BatchService.class);
     
@@ -26,7 +26,7 @@ public class BatchService {
 
         for (int i = 0; i < batches.getBatches().size(); i++) {
             Batch batch = batches.getBatches().get(i);
-            catalogue.put(Long.valueOf(i), batch);
+            catalogue.put(batch.getCode(), batch);
         }
         //logger.info("Batch file info have been saved from Marshaller");
         
@@ -42,14 +42,12 @@ public class BatchService {
     }
 
     public Batch getBatch(String code) throws XmlException, IOException {
-        List<Batch> bts = new ArrayList<Batch>(catalogue.values());
-        for (int i = 0; i < bts.size(); i++) {
-            Batch batch_ = bts.get(i);
-            if ((batch_.getCode()).equals(code)) {
-                return batch_;
-            }
-        }
-        return null;
+        Batch b = catalogue.get(code);
+        
+        if(b!= null)
+            return b;
+        else 
+            return null;
     }
 
     /*

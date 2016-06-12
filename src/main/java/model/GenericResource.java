@@ -46,7 +46,6 @@ public class GenericResource {
     
     BatchService batchService;
     Test_property r = new Test_property();  
-    MessageService messageService = new MessageService();  
     private static Logger logger = Logger.getLogger(BatchService.class);
     QuartzTrigger trigger = new QuartzTrigger();
     
@@ -80,14 +79,7 @@ public class GenericResource {
     public List<Batch> getAllBatch() throws IOException{
         return batchService.getAllBatches();
     }
-    @POST
-    @Path("postMessage")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public List<Message> postMessage(Message message) throws IOException{
-        messageService.addMessage(message);
-        return messageService.getAllMessagges();
-    }
+
     @GET
     @Path("Batch")
     @Produces(MediaType.TEXT_PLAIN)
@@ -134,7 +126,7 @@ public class GenericResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String postBatchParam(List<ParamPost> paramPosts){    
         
-        Batch btc= new Batch();
+        Batch btc= new Batch();//Object json
         
         try {
             btc = batchService.getBatch(paramPosts.get(0).paramCode);
@@ -214,8 +206,9 @@ public class GenericResource {
         System.out.println("web service receives list (in Json format): " + paramPostList);
 
         for(int j = 1 ;j< paramPosts.size(); j++){
-            System.out.println("paramPosts.get(j).paramPostValue :" + paramPosts.get(j).paramPostValue);
+            
             btc.getInput().getParams().get(j-1).setDEFAULTVALUE(paramPosts.get(j).paramPostValue);
+            System.out.println("changed param default value :" + btc.getInput().getParams().get(j-1).DEFAULTVALUE);
         }
         
         String filepath = r.readProperties("batch_name.bat");
