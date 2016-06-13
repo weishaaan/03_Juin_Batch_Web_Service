@@ -40,6 +40,7 @@ import org.eclipse.jetty.server.Request;
 import static org.glassfish.jersey.server.model.Parameter.Source.PATH;
 import com.google.gson.Gson;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Path("home")
 public class GenericResource {
@@ -150,14 +151,20 @@ public class GenericResource {
         System.out.println("Successfully $POST params to web service!");
         System.out.println("The batch code is " + paramPosts.get(0).paramCode);
         System.out.println("web service receives list (in Json format): " + paramPostList);
-
+        
+        List<Param> ls = new ArrayList<Param>();
+        
         for(int j = 1 ;j< paramPosts.size(); j++){
             System.out.println("paramPosts.get(j).paramPostValue :" + paramPosts.get(j).paramPostValue);
             btc.getInput().getParams().get(j-1).setDEFAULTVALUE(paramPosts.get(j).paramPostValue);
+            
+            ls.add(new Param(btc.input.getParams().get(j-1).PARAMNAME,paramPosts.get(j).paramPostValue,btc.input.getParams().get(j-1).LABEL)); 
         }
+        
+        HashMap m = btc.paramList(btc.code, ls);
                 
 
-        return  "Post succesfully! the changed default value is :"+ btc.getInput().getParams().get(0).DEFAULTVALUE;  
+        return  "Post succesfully";  
         
     }
     
@@ -196,29 +203,32 @@ public class GenericResource {
         
         Gson gson = new Gson();
         String paramPostList = gson.toJson(paramPosts);
-        
-        logger.info("Successfully $POST params to web service!");
-        logger.info("The batch code is " + btc.code);
-        logger.info("Those params are: "+ paramPostList); 
+        logger.info("Successfully $POST params to web service!"+"The batch code is " + btc.code + "Those params are: "+ paramPostList);
+        //System.out.println("Successfully $POST params to web service!"+"The batch code is " + btc.code + "Those params are: "+ paramPostList);
 
-        System.out.println("Successfully $POST params to web service!");
-        System.out.println("The batch code is " + paramPosts.get(0).paramCode);
-        System.out.println("web service receives list (in Json format): " + paramPostList);
-
+        List<Param> ls = new ArrayList<Param>();
         for(int j = 1 ;j< paramPosts.size(); j++){
-            
-            btc.getInput().getParams().get(j-1).setDEFAULTVALUE(paramPosts.get(j).paramPostValue);
-            System.out.println("changed param default value :" + btc.getInput().getParams().get(j-1).DEFAULTVALUE);
+            System.out.println("paramPosts.get(j).paramPostValue :" + paramPosts.get(j).paramPostValue);
+            ls.add(new Param(btc.input.getParams().get(j-1).PARAMNAME,paramPosts.get(j).paramPostValue,btc.input.getParams().get(j-1).LABEL)); 
         }
+        System.out.println(ls.get(0).DEFAULTVALUE);
         
+        HashMap<String, List<Param>> hashmap = btc.paramList(btc.code, ls);
+        String default_value="";
+        
+        List<Param> s = hashmap.get(btc.code);
+        
+        return s.get(0).PARAMNAME;
+        
+        /*
         String filepath = r.readProperties("batch_name.bat");
         System.out.println(filepath);
-        filepath = filepath +"  \"" + btc.getInput().getParams().get(0).DEFAULTVALUE + "\"" ;
+        filepath = filepath +"  \"" + default_value + "\"" ;
         String result = r.runBatFile(filepath);                        
 	return  result ; 
 
         //return  "Post succesfully! the changed default value is :"+ btc.getInput().getParams().get(0).DEFAULTVALUE;  
-        
+        */
     }
     
 }
