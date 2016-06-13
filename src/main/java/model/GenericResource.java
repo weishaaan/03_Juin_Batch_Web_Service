@@ -141,7 +141,7 @@ public class GenericResource {
     public String postNameRunBat(List<Param> paramPosts){    
         
         Batch btc= new Batch();
-        
+        //post data : [{"paramCode":"07J"},{"refMora":"changed"},{"date1":"d"},{"date2":"D"}]
         try {
             btc = batchService.getBatch(paramPosts.get(0).INPUTVALUE);
                 
