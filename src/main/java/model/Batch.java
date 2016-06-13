@@ -27,13 +27,19 @@ public class Batch {
     public Batch() {
     }
 
-    public HashMap paramList(String code, List<Param> param){
-        HashMap<String, List<Param>> map = new HashMap<String, List<Param>>();
-        map.put(code, param);
-        
-        return map;
+    public Map paramList(){
+        Map<String, List<Map>> batchMap = new HashMap();
+        List<Map> l = new ArrayList();
+        for(int i = 0; i < input.getParams().size() ; i++){
+            Map<String, String> m = new HashMap();
+            m.put("PARAMNAME", input.getParams().get(i).PARAMNAME);
+            m.put("DEFAULTVALUE", input.getParams().get(i).DEFAULTVALUE);
+            m.put("LABEL", input.getParams().get(i).LABEL);
+            l.add(m);
+        }
+        batchMap.put(code, l);
+        return batchMap;
     } 
-    
     
     @XmlElement(name = "CODE")
     public String getCode() {

@@ -41,6 +41,7 @@ import static org.glassfish.jersey.server.model.Parameter.Source.PATH;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @Path("home")
 public class GenericResource {
@@ -144,7 +145,6 @@ public class GenericResource {
         //post data : [{"paramCode":"07J"},{"refMora":"changed"},{"date1":"d"},{"date2":"D"}]
         try {
             btc = batchService.getBatch(paramPosts.get(0).INPUTVALUE);
-                
         } catch (XmlException ex) {
             java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             logger.error("Wrong, can't get the batch file."); 
@@ -158,20 +158,12 @@ public class GenericResource {
         String paramPostList = gson.toJson(paramPosts);
         logger.info("Successfully $POST params to web service!"+"The batch code is " + btc.code + "Those params are: "+ paramPostList);
         
-        //M-A-J param list
-        List<Param> ls = new ArrayList<Param>();
+        List<Map<String,String>> paramListMap = btc.paramMapList();
         for(int j = 1 ;j< paramPosts.size(); j++){
-            System.out.println("paramPosts.get(j).paramPostValue :" + paramPosts.get(j).INPUTVALUE);
-            ls.add(new Param(btc.input.getParams().get(j-1).PARAMNAME,paramPosts.get(j).INPUTVALUE,btc.input.getParams().get(j-1).LABEL)); 
+            paramListMap.get(j-1).put("DEFAULTVALUE", paramPosts.get(j).INPUTVALUE);
         }
-        System.out.println(ls.get(0).DEFAULTVALUE);
         
-        HashMap<String, List<Param>> hashmap = btc.paramList(btc.code, ls);
-        String default_value="";
-        
-        List<Param> s = hashmap.get(btc.code);
-        
-        return s.get(0).PARAMNAME;
+        return "xxx";
         
         /*
         String filepath = r.readProperties("batch_name.bat");
