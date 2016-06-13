@@ -11,7 +11,8 @@ public class Param {
     public String PARAMNAME;
     public String DEFAULTVALUE;
     public String LABEL;
-
+    public String INPUTVALUE;
+    
     public Param(String PARAMNAME, String DEFAULTVALUE, String LABEL) {
         this.PARAMNAME = PARAMNAME;
         this.DEFAULTVALUE = DEFAULTVALUE;

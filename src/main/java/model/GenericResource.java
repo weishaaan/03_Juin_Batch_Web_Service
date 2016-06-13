@@ -120,53 +120,6 @@ public class GenericResource {
             
             return    "Run batch, and the result is : "+result; 
     }
-        
-    @POST
-    @Path("postBatchParam")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String postBatchParam(List<ParamPost> paramPosts){    
-        
-        Batch btc= new Batch();//Object json
-        
-        try {
-            btc = batchService.getBatch(paramPosts.get(0).paramCode);
-                
-        } catch (XmlException ex) {
-            java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
-            logger.error("Wrong, can't get the batch file."); 
-            
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
-            logger.error("Wrong, can't get the batch file"); 
-        }
-        
-        Gson gson = new Gson();
-        String paramPostList = gson.toJson(paramPosts);
-        
-        logger.info("Successfully $POST params to web service!");
-        logger.info("The batch code is " + btc.code);
-        logger.info("Those params are: "+ paramPostList); 
-
-        System.out.println("Successfully $POST params to web service!");
-        System.out.println("The batch code is " + paramPosts.get(0).paramCode);
-        System.out.println("web service receives list (in Json format): " + paramPostList);
-        
-        List<Param> ls = new ArrayList<Param>();
-        
-        for(int j = 1 ;j< paramPosts.size(); j++){
-            System.out.println("paramPosts.get(j).paramPostValue :" + paramPosts.get(j).paramPostValue);
-            btc.getInput().getParams().get(j-1).setDEFAULTVALUE(paramPosts.get(j).paramPostValue);
-            
-            ls.add(new Param(btc.input.getParams().get(j-1).PARAMNAME,paramPosts.get(j).paramPostValue,btc.input.getParams().get(j-1).LABEL)); 
-        }
-        
-        HashMap m = btc.paramList(btc.code, ls);
-                
-
-        return  "Post succesfully";  
-        
-    }
     
     @GET
     @Path("quartz")
@@ -185,12 +138,12 @@ public class GenericResource {
     @Path("postTestBatchParam")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String postNameRunBat(List<ParamPost> paramPosts){    
+    public String postNameRunBat(List<Param> paramPosts){    
         
         Batch btc= new Batch();
         
         try {
-            btc = batchService.getBatch(paramPosts.get(0).paramCode);
+            btc = batchService.getBatch(paramPosts.get(0).INPUTVALUE);
                 
         } catch (XmlException ex) {
             java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
@@ -204,12 +157,12 @@ public class GenericResource {
         Gson gson = new Gson();
         String paramPostList = gson.toJson(paramPosts);
         logger.info("Successfully $POST params to web service!"+"The batch code is " + btc.code + "Those params are: "+ paramPostList);
-        //System.out.println("Successfully $POST params to web service!"+"The batch code is " + btc.code + "Those params are: "+ paramPostList);
-
+        
+        //M-A-J param list
         List<Param> ls = new ArrayList<Param>();
         for(int j = 1 ;j< paramPosts.size(); j++){
-            System.out.println("paramPosts.get(j).paramPostValue :" + paramPosts.get(j).paramPostValue);
-            ls.add(new Param(btc.input.getParams().get(j-1).PARAMNAME,paramPosts.get(j).paramPostValue,btc.input.getParams().get(j-1).LABEL)); 
+            System.out.println("paramPosts.get(j).paramPostValue :" + paramPosts.get(j).INPUTVALUE);
+            ls.add(new Param(btc.input.getParams().get(j-1).PARAMNAME,paramPosts.get(j).INPUTVALUE,btc.input.getParams().get(j-1).LABEL)); 
         }
         System.out.println(ls.get(0).DEFAULTVALUE);
         
