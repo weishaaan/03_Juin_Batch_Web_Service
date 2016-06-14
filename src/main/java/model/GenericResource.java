@@ -46,40 +46,26 @@ import java.util.Map;
 @Path("home")
 public class GenericResource {
     
-    BatchService batchService;
+    BatchDatabase batchDatabase = new BatchDatabase();
     Test_property r = new Test_property();  
     private static Logger logger = Logger.getLogger(BatchService.class);
     QuartzTrigger trigger = new QuartzTrigger();
+
     
-    public GenericResource() throws JAXBException, IOException, XmlException {
-        this.batchService = new BatchService();
-    }
-    
-  
-    /***************************TEXT PLAIN**************************************/
-    @POST
-    @Path("code")
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Batch postBatchByCode(@PathParam("code") String code) throws XmlException, IOException{
-        System.out.println("input code of Batch file is " + code);
-        
-        return batchService.getBatch(code);
-    }  
-    
+   
     /*************************** JSON **************************************/
     @GET
     @Path("getOneBatch/{code}")
     @Produces(MediaType.APPLICATION_JSON)
     public Batch getBatchByCode(@PathParam("code") String code)throws IOException, XmlException{
-        return batchService.getBatch(code);
+        return batchDatabase.getBatch(code);
     }
     
     @GET
     @Path("getAllBatch")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Batch> getAllBatch() throws IOException{
-        return batchService.getAllBatches();
+        return batchDatabase.getAllBatches();
     }
 
     @GET
@@ -101,7 +87,7 @@ public class GenericResource {
         //r.createProperties();     
         
         try {
-            batch = batchService.getBatch("08M");
+            batch = batchDatabase.getBatch("08M");
             
         } catch (XmlException ex) {
             java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,7 +130,7 @@ public class GenericResource {
         Batch btc= new Batch();
         
         try {
-            btc = batchService.getBatch(paramPosts.get(0).INPUTVALUE);
+            btc = batchDatabase.getBatch(paramPosts.get(0).INPUTVALUE);
         } catch (XmlException ex) {
             java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             logger.error("Wrong, can't get the batch file."); 

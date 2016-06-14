@@ -48,22 +48,7 @@ public class BatchService {
         
     }
 
-    public List<Batch> getAllBatches() {
-        
-        //logger.info("successfully get all batch files");
-        
-        return new ArrayList<Batch>(catalogue.values());
-        
-    }
-
-    public Batch getBatch(String code) throws XmlException, IOException {
-        Batch b = catalogue.get(code);
-        
-        if(b!= null)
-            return b;
-        else 
-            return null;
-    }
+    
 
     /*
      public List<Batch> addBatch(Batch batch){

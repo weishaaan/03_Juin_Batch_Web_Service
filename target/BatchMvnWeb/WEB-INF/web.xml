@@ -33,7 +33,9 @@
     </servlet-mapping>
 
     
-   
+    <listener>   
+        <listener-class>model.MyServlet</listener-class>   
+    </listener> 
     
        
 </web-app>
