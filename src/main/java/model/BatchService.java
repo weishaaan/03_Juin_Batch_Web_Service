@@ -1,5 +1,6 @@
 package model;
 
+import model.Batch;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,11 +24,26 @@ public class BatchService {
 
         Marshall m = new Marshall();
         Batches batches = m.unmarshaller();
+        
 
         for (int i = 0; i < batches.getBatches().size(); i++) {
+            
             Batch batch = batches.getBatches().get(i);
             catalogue.put(batch.getCode(), batch);
+            
+            Map<String,Param> pl = new HashMap();
+            
+            if(batch.input.getParams() != null){
+                for(int j = 0; j < batch.input.getParams().size();j++){
+                    Param param = batch.input.getParams().get(j);
+                    String paramName = param.PARAMNAME;
+                    System.out.println("j: "+j+" ,name is "+ paramName);
+                    pl.put(paramName, param);
+                }
+            }
+            catalogue.get(batch.getCode()).setParalist(pl);
         }
+        
         //logger.info("Batch file info have been saved from Marshaller");
         
     }
@@ -37,7 +53,6 @@ public class BatchService {
         //logger.info("successfully get all batch files");
         
         return new ArrayList<Batch>(catalogue.values());
-        
         
     }
 

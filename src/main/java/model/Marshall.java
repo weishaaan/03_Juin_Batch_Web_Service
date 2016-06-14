@@ -5,6 +5,10 @@
  */
 package model;
 
+import model.Input;
+import model.Param;
+import model.Batches;
+import model.Batch;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

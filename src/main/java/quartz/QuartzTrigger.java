@@ -1,4 +1,4 @@
-package model;
+package quartz;
 
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;

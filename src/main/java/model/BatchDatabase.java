@@ -1,5 +1,6 @@
 package model;
 
+import model.Batch;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,7 +1,8 @@
-package model;
+package control;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
+import model.*;
 
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
@@ -20,7 +21,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(model.CORSFilter.class);
+        resources.add(control.CORSFilter.class);
         resources.add(model.GenericResource.class);
     }
     

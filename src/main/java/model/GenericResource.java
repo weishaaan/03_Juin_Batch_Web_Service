@@ -1,8 +1,8 @@
 package model;
 
-import model.Batch;
-import model.BatchService;
-import model.Test_property;
+import quartz.QuartzTrigger;
+import quartz.*;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -142,7 +142,7 @@ public class GenericResource {
     public String postNameRunBat(List<Param> paramPosts){    
         
         Batch btc= new Batch();
-        //post data : [{"paramCode":"07J"},{"refMora":"changed"},{"date1":"d"},{"date2":"D"}]
+        
         try {
             btc = batchService.getBatch(paramPosts.get(0).INPUTVALUE);
         } catch (XmlException ex) {
@@ -158,9 +158,12 @@ public class GenericResource {
         String paramPostList = gson.toJson(paramPosts);
         logger.info("Successfully $POST params to web service!"+"The batch code is " + btc.code + "Those params are: "+ paramPostList);
         
-        List<Map<String,String>> paramListMap = btc.paramMapList();
+        //[{"paramCode":"07J"},{"refMora":"changed"},{"date1":"1"},{"date2":"2"}]
+        Map<String,Param> paraList = btc.paralist;
         for(int j = 1 ;j< paramPosts.size(); j++){
-            paramListMap.get(j-1).put("DEFAULTVALUE", paramPosts.get(j).INPUTVALUE);
+            Param p = btc.input.getParams().get(j-1);
+            p.setDEFAULTVALUE(paramPosts.get(j).INPUTVALUE);
+            paraList.put(btc.input.getParams().get(j-1).PARAMNAME, p);
         }
         
         return "xxx";
