@@ -1,4 +1,4 @@
-package model;
+package com.mora.model;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

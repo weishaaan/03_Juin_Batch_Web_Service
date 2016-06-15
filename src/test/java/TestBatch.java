@@ -1,6 +1,6 @@
-import model.Input;
-import model.Param;
-import model.Batch;
+import com.mora.model.Input;
+import com.mora.model.Param;
+import com.mora.model.Batch;
 import static com.jayway.restassured.RestAssured.expect;
 import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.get;

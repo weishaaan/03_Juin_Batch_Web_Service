@@ -1,8 +1,8 @@
-package model;
+package com.mora.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import model.Batch;
+import com.mora.model.Batch;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

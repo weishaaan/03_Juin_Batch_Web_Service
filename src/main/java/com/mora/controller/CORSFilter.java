@@ -1,4 +1,4 @@
-package control;
+package com.mora.controller;
 import java.io.IOException;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;

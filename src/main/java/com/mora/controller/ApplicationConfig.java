@@ -1,8 +1,7 @@
-package control;
+package com.mora.controller;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
-import model.*;
 
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
@@ -21,8 +20,8 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(control.CORSFilter.class);
-        resources.add(model.GenericResource.class);
+        resources.add(com.mora.controller.CORSFilter.class);
+        resources.add(com.mora.model.GenericResource.class);
     }
     
 }

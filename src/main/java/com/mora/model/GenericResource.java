@@ -1,7 +1,6 @@
-package model;
+package com.mora.model;
 
-import quartz.QuartzTrigger;
-import quartz.*;
+import com.mora.controller.QuartzTrigger;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;

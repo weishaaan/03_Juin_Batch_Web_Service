@@ -1,4 +1,4 @@
-package model;
+package com.mora.model;
 
 import java.io.IOException;
 import java.util.logging.Level;

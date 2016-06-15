@@ -6,36 +6,27 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>control.ApplicationConfig</param-value>
+            <param-value>com.mora.controller.ApplicationConfig</param-value>
         </init-param>
-
         <init-param>
             <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
-            <param-value>control.CORSFilter</param-value>
+            <param-value>com.mora.controller.control.CORSFilter</param-value>
         </init-param>
-    
         <init-param>
             <param-name>com.sun.jersey.config.provider.packages</param-name>
-            <param-value>model</param-value>
+            <param-value>com.mora.model</param-value>
         </init-param>
-        
         <init-param>
             <param-name>com.sun.jersey.config.provider.packages</param-name>
-            <param-value>quartz</param-value>
+            <param-value>com.mora.controller.quartz</param-value>
         </init-param>
-
         <load-on-startup>1</load-on-startup>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>ServletAdaptor</servlet-name>
         <url-pattern>/webresources/*</url-pattern>
     </servlet-mapping>
-
-    
-    <listener>   
-        <listener-class>model.MyServlet</listener-class>   
-    </listener> 
-    
-       
+    <listener>
+        <listener-class>com.mora.model.MyServlet</listener-class>
+    </listener>
 </web-app>

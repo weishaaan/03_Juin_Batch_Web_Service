@@ -1,6 +1,6 @@
-package model;
+package com.mora.model;
 
-import model.Batch;
+import com.mora.model.Batch;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -10,8 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "CATALOG")
 @XmlAccessorType (XmlAccessType.FIELD)
-public class Batches 
-{
+public class Batches{
     @XmlElement(name = "BATCH")
     private List<Batch> batches = null;
 

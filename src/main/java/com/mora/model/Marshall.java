@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package com.mora.model;
 
-import model.Input;
-import model.Param;
-import model.Batches;
-import model.Batch;
+import com.mora.model.Input;
+import com.mora.model.Param;
+import com.mora.model.Batches;
+import com.mora.model.Batch;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

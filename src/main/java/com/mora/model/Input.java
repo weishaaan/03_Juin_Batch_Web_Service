@@ -1,6 +1,6 @@
-package model;
+package com.mora.model;
 
-import model.Param;
+import com.mora.model.Param;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

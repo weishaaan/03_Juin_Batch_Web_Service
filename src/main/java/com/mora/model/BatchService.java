@@ -1,6 +1,6 @@
-package model;
+package com.mora.model;
 
-import model.Batch;
+import com.mora.model.Batch;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +37,6 @@ public class BatchService {
                 for(int j = 0; j < batch.input.getParams().size();j++){
                     Param param = batch.input.getParams().get(j);
                     String paramName = param.PARAMNAME;
-                    System.out.println("j: "+j+" ,name is "+ paramName);
                     pl.put(paramName, param);
                 }
             }

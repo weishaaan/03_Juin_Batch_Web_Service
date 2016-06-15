@@ -1,4 +1,4 @@
-package model;
+package com.mora.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
