@@ -10,6 +10,7 @@ Spécification des batchs
         <NAME>Batch num 7 - extraction 7</NAME>
         <DESCRIPTION>USA</DESCRIPTION>
         <OUTPUT>Fichier xls</OUTPUT>
+        <CATEGORY>Logistique</CATEGORY>
         <INPUT>
             <PARAM>
                 <!-- référence Mora du produit -->
@@ -37,6 +38,7 @@ Spécification des batchs
         <NAME>Batch num 8 - extraction 8</NAME>
         <DESCRIPTION>USA</DESCRIPTION>
         <OUTPUT>Fichier xls</OUTPUT>
+        <CATEGORY>Extractions Divalto</CATEGORY>
         <INPUT>
             <PARAM>
                 <!-- code Client -->
@@ -49,9 +51,10 @@ Spécification des batchs
     
     <BATCH>
         <CODE>09T</CODE>
-        <NAME>Batch num 8 - extraction 8</NAME>
+        <NAME>Batch num 9 - extraction 9</NAME>
         <DESCRIPTION>USA</DESCRIPTION>
         <OUTPUT>Fichier xls</OUTPUT>
+        <CATEGORY>Logistique</CATEGORY>
         <INPUT>
         </INPUT>
     </BATCH>
@@ -61,6 +64,7 @@ Spécification des batchs
         <NAME>Batch num 10 - extraction 10</NAME>
         <DESCRIPTION>FRANCE</DESCRIPTION>
         <OUTPUT>Fichier xls</OUTPUT>
+        <CATEGORY>Etiquettes</CATEGORY>
         <INPUT>
             <PARAM>
                 <!-- code Client -->

@@ -8,12 +8,10 @@ import javax.servlet.ServletContextListener;
 import javax.xml.bind.JAXBException;
 import org.apache.xmlbeans.XmlException;
  
-public class MyServlet implements ServletContextListener 
-{
+public class MyServlet implements ServletContextListener {
     
     @Override
-    public void contextInitialized(ServletContextEvent arg0)
-    {
+    public void contextInitialized(ServletContextEvent arg0){
         System.out.println("test servlet2");
         try {
             BatchService batchService = new BatchService();
@@ -24,12 +22,9 @@ public class MyServlet implements ServletContextListener
         } catch (JAXBException ex) {
             Logger.getLogger(MyServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     @Override
-    public void contextDestroyed(ServletContextEvent arg0)
-    {
-        System.out.print("test servlet3");
+    public void contextDestroyed(ServletContextEvent arg0){
+        System.out.print("test servlet");
     }
-    
 }

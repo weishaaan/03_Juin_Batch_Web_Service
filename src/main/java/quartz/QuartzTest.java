@@ -1,4 +1,4 @@
-package com.mora.controller;
+package quartz;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;

@@ -8,23 +8,24 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(propOrder = {"code", "name", "description", "output", "input"})
+@XmlType(propOrder = {"code", "name", "description", "output", "input","category"})
 public class Batch {
     String code;
     String name;
     String description;
     String output;
+    String category;
     Input input;
     Map<String,Param> paralist;
 
-    public Batch(String code, String name, String description, String output, Input input) {
+    public Batch(String code, String name, String description, String output, Input input,String category) {
         this.code = code;
         this.name = name;
         this.description = description;
         this.output = output;
         this.input = input;
+        this.category = category;
     }
-    
     
 
     public Batch() {
@@ -59,7 +60,12 @@ public class Batch {
     public Input getInput() {
         return input;
     }
-
+    
+    @XmlElement(name = "CATEGORY")
+    public String getCategory() {
+        return category;
+    }
+    
     public void setCode(String code) {
         this.code = code;
     }
@@ -79,5 +85,10 @@ public class Batch {
     public void setInput(Input input) {
         this.input = input;
     }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
 
 }
