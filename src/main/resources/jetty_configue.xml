@@ -1,0 +1,145 @@
+<plugin>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-maven-plugin</artifactId>
+    <version>9.2.1.v20140609</version>
+    <configuration>
+      
+      	<!--httpConnector:
+            port:The port number for the connector to listen on. By default it is 8080.
+            host:The particular interface for the connector to listen on. By default, all interfaces.
+            name:The name of the connector, which is useful for configuring contexts to respond only on particular connectors.
+            idleTimeout:Maximum idle time for a connection.
+            soLinger:The socket linger time.
+      	
+            or we can use jetty-http.xml file from the Jetty distribution to configue this httpConnector:
+            <jettyXml>jetty.xml,jetty-http.xml,jetty-ssl.xml,jetty-https.xml</jettyXml>
+      	-->
+        <httpConnector>
+          <!--host>localhost</host-->
+          <port>9999</port>
+        </httpConnector>
+        
+        <!--jettyXml:
+            You might use it if you have other webapps, handlers, specific types of connectors etc.
+            order of files matters.
+        -->
+        <jettyXml>jetty.xml,jetty-ssl.xml,jetty-https.xml</jettyXml>
+        
+        <!--scanIntervalSeconds:
+        The pause in seconds to check for changes and automatically hot redeploy if any are detected.
+         By default this is 0.
+        -->
+        <scanIntervalSeconds>10</scanIntervalSeconds>
+        
+        
+        <webApp>
+            <contextPath>/test</contextPath>
+        </webApp>
+        
+        <!-- by default, we dont need to change this configurations
+        <webAppSourceDirectory>${project.basedir}/src/staticfiles</webAppSourceDirectory>
+        <webApp>
+          <contextPath>/</contextPath>
+          <descriptor>${project.basedir}/src/over/here/web.xml</descriptor>
+          <jettyEnvXml>${project.basedir}/src/over/here/jetty-env.xml</jettyEnvXml>
+        </webApp>
+        <classesDirectory>${project.basedir}/somewhere/else</classesDirectory>
+        <scanClassesPattern>
+          <excludes>
+             <exclude>**/Foo.class</exclude>
+          </excludes>
+        </scanClassesPattern>
+        <scanTargets>
+          <scanTarget>src/mydir</scanTarget>
+          <scanTarget>src/myfile.txt</scanTarget>
+        </scanTargets>
+        <scanTargetPatterns>
+          <scanTargetPattern>
+            <directory>src/other-resources</directory>
+            <includes>
+              <include>**/*.xml</include>
+              <include>**/*.properties</include>
+            </includes>
+            <excludes>
+              <exclude>**/myspecial.xml</exclude>
+              <exclude>**/myspecial.properties</exclude>
+            </excludes>
+          </scanTargetPattern>
+        </scanTargetPatterns>
+        -->
+        
+        <!--set location of war file -->
+        <war>${project.basedir}/target/mycustom.war</war>
+       
+        <!--This is most useful when you want to control the start and stop of Jetty via execution bindings in your pom.xml.-->
+        <executions>
+            <execution>
+                <id>start-jetty</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                    <goal>start</goal>
+                </goals>
+                <configuration>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                </configuration>
+            </execution>
+            <execution>
+                <id>stop-jetty</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                    <goal>stop</goal>
+                </goals>
+            </execution>
+        </executions>
+  
+        <!-- jetty stop :
+          stopPort:A port number for jetty to listen on to receive a stop command to cause it to shutdown.
+        stopKey:A string value sent to the stopPort to validate the stop command.
+        stopWait:The maximum time in seconds that the plugin will wait for confirmation that jetty has stopped. 
+        -->
+        <stopPort>9966</stopPort>
+        <stopKey>foo</stopKey>
+        <stopWait>10</stopWait>
+        
+        <!--loginServices
+        like JDBCLoginService, etc
+        -->
+        <loginServices>
+            <loginService implementation="org.eclipse.jetty.security.HashLoginService">
+                <name>Test Realm</name>
+                <config>${project.basedir}/src/etc/realm.properties</config>
+            </loginService>
+        </loginServices>
+    
+        <!--Running More than One Webapp
+                or add a jetty.xml file to webapp A. Copy the jetty.xml file from the jetty distribution, 
+                and then add WebAppContexts for the other 2 webapps:
+        -->
+        <contextHandlers>
+            <contextHandler implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
+                <war>${project.basedir}../../B.war</war>
+                <contextPath>/B</contextPath>
+            </contextHandler>
+            <contextHandler implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
+                <war>${project.basedir}../../C.war</war>
+                <contextPath>/C</contextPath>
+            </contextHandler>
+        </contextHandlers>
+    
+        <!--Setting System Properties
+        or we use a file to set system properties
+        <systemPropertiesFile>${project.basedir}/mysys.props</systemPropertiesFile>
+        -->
+        <systemProperties>
+            <force>true</force>
+            <systemProperty>
+                <name>fooprop</name>
+                <value>222</value>
+            </systemProperty>
+        </systemProperties>
+    
+    
+    
+    
+    </configuration>
+</plugin>
