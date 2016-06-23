@@ -83,7 +83,8 @@ public class Marshall {
             Batch btc = batches.getBatches().get(i);
             System.out.println("Batch ");
             System.out.println("code is " +btc.getCode()+",name is"+btc.getName()+
-                    ",description is "+btc.getDescription()+",category is "+btc.getCategory()+",input is ");
+                    ",description is "+btc.getDescription()+",category is "+btc.getCategory()
+                    +",frequency is "+btc.getFrequency()+",input is ");
             if(btc.getInput().getParams() == null){
                  System.out.println(" NULL");
             }else{

@@ -33,15 +33,20 @@ public class Test_property {
             catch (Exception e) {
 		e.printStackTrace();
 	    }
+            
             if(property.equals("text")){
                 path = prop.getProperty("text.bat");
             }
-            else if(property.equals("xml")){
+            if(property.equals("xml")){
                 path = prop.getProperty("xml.bat");
-                }
-                else if(property.equals("batch_name.bat")){
-                    path = prop.getProperty("batch_name.bat");
             }
+            if(property.equals("batch_name.bat")){
+                path = prop.getProperty("batch_name.bat");
+            }
+            
+            
+            
+            
             return path;
         }
 

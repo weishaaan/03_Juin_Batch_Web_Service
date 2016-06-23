@@ -12,7 +12,7 @@ public class MyServlet implements ServletContextListener {
     
     @Override
     public void contextInitialized(ServletContextEvent arg0){
-        System.out.println("test servlet2");
+        System.out.println("servlet for loading batch info.");
         try {
             BatchService batchService = new BatchService();
         } catch (XmlException ex) {
@@ -25,6 +25,6 @@ public class MyServlet implements ServletContextListener {
     }
     @Override
     public void contextDestroyed(ServletContextEvent arg0){
-        System.out.print("test servlet");
+        System.out.print("servlet context destroyed.");
     }
 }

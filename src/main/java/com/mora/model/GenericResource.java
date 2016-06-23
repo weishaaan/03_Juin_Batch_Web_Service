@@ -47,10 +47,11 @@ import java.util.Map;
 public class GenericResource {
     
     BatchDatabase batchDatabase = new BatchDatabase();
-    Test_property r = new Test_property();  
+    Test_property property = new Test_property();  
     private static Logger logger = Logger.getLogger(BatchService.class);
     QuartzTrigger trigger = new QuartzTrigger();
 
+    QuartzTest quartz = new QuartzTest();
     
    
     /*************************** JSON **************************************/
@@ -73,9 +74,9 @@ public class GenericResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String doGetBat(){            
         //r.createProperties();        
-        String filepath = r.readProperties("test");
+        String filepath = property.readProperties("test");
         //System.out.println(filepath);
-        String result = r.runBatFile(filepath);                        
+        String result = property.runBatFile(filepath);                        
 	return result + " ! it works!!! ";      
     }
     
@@ -97,8 +98,8 @@ public class GenericResource {
             java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             logger.error("Wrong, can't $POST successfully to web service.");  
         }
-            String filepath = r.readProperties("text");
-            String result = r.runBatFile(filepath);
+            String filepath = property.readProperties("text");
+            String result = property.runBatFile(filepath);
             
             logger.info("Run batch file successsfully!");
             logger.info("The batch code is: "+ batch.code + ".");
@@ -113,12 +114,17 @@ public class GenericResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String doQuartzTrigger(){           
         try {
-            trigger.QuartzTrigger();
+            
+            String frequency = batchDatabase.getBatch("08M").getFrequency();
+            trigger.QuartzTrigger(frequency);
+            
+            System.out.println("quartz start works!" );
+            
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-	return "Quartz works!!! ";      
+	return "quartz works!";      
     }
     
     @POST
