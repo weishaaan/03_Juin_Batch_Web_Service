@@ -12,6 +12,7 @@ Spécification des batchs
         <OUTPUT>Fichier xls</OUTPUT>
         <CATEGORY>Logistique</CATEGORY>
         <FREQUENCY>10</FREQUENCY>
+        <BATPATH>D:\path\name1.bat</BATPATH>
         <INPUT>
             <PARAM>
                 <!-- référence Mora du produit -->
@@ -41,6 +42,7 @@ Spécification des batchs
         <OUTPUT>Fichier xls</OUTPUT>
         <CATEGORY>Extractions Divalto</CATEGORY>
         <FREQUENCY>9</FREQUENCY>
+        <BATPATH>D:\path\name2.bat</BATPATH>
         <INPUT>
             <PARAM>
                 <!-- code Client -->
@@ -58,6 +60,7 @@ Spécification des batchs
         <OUTPUT>Fichier xls</OUTPUT>
         <CATEGORY>Logistique</CATEGORY>
         <FREQUENCY>10</FREQUENCY>
+        <BATPATH>D:\path\name3.bat</BATPATH>
         <INPUT>
         </INPUT>
     </BATCH>
@@ -69,6 +72,7 @@ Spécification des batchs
         <OUTPUT>Fichier xls</OUTPUT>
         <CATEGORY>Etiquettes</CATEGORY>
         <FREQUENCY>8</FREQUENCY>
+        <BATPATH>D:\path\name4.bat</BATPATH>
         <INPUT>
             <PARAM>
                 <!-- code Client -->

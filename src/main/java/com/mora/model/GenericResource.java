@@ -98,7 +98,8 @@ public class GenericResource {
             java.util.logging.Logger.getLogger(GenericResource.class.getName()).log(Level.SEVERE, null, ex);
             logger.error("Wrong, can't $POST successfully to web service.");  
         }
-            String filepath = property.readProperties("text");
+            String filepath = batch.getBatpath();
+            // String filepath = property.readProperties("text");
             String result = property.runBatFile(filepath);
             
             logger.info("Run batch file successsfully!");
@@ -146,6 +147,11 @@ public class GenericResource {
             logger.error("Wrong, can't get the batch file"); 
         }
         
+        String filepath = btc.getBatpath();
+        // String filepath = property.readProperties("text");
+        String result = property.runBatFile(filepath);
+            
+        
         Gson gson = new Gson();
         String paramPostList = gson.toJson(paramPosts);
         logger.info("Successfully $POST params to web service!"+"The batch code is " + btc.code + "Those params are: "+ paramPostList);
@@ -158,7 +164,8 @@ public class GenericResource {
             paraList.put(btc.input.getParams().get(j-1).PARAMNAME, p);
         }
         
-        return "xxx";
+        
+        return    "Run batch, and the result is : "+result; 
         
         /*
         String filepath = r.readProperties("batch_name.bat");
