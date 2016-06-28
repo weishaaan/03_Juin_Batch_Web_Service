@@ -1,4 +1,4 @@
-package quartz;
+package com.mora.quartz;
 
 import com.mora.model.Batch;
 import com.mora.model.BatchDatabase;

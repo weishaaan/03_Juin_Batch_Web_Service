@@ -1,7 +1,7 @@
 package com.mora.model;
 
-import quartz.QuartzTrigger;
-import quartz.*;
+import com.mora.quartz.QuartzTest;
+import com.mora.quartz.QuartzTrigger;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -150,7 +150,6 @@ public class GenericResource {
         String filepath = btc.getBatpath();
         // String filepath = property.readProperties("text");
         String result = property.runBatFile(filepath);
-            
         
         Gson gson = new Gson();
         String paramPostList = gson.toJson(paramPosts);
@@ -163,7 +162,6 @@ public class GenericResource {
             p.setDEFAULTVALUE(paramPosts.get(j).INPUTVALUE);
             paraList.put(btc.input.getParams().get(j-1).PARAMNAME, p);
         }
-        
         
         return    "Run batch, and the result is : "+result; 
         

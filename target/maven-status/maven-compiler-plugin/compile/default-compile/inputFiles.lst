@@ -1,9 +1,12 @@
+/Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/jndi/DbConnectionUtil.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/model/GenericResource.java
+/Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/jndi/MainServlet.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/model/Input.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/model/Batches.java
-/Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/quartz/QuartzTest.java
-/Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/quartz/QuartzTrigger.java
+/Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/jndi/TestConnectionServlet.java
+/Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/quartz/QuartzTest.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/model/BatchService.java
+/Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/jndi/User.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/model/BatchDatabase.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/model/MyServlet.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/model/Batch.java
@@ -11,4 +14,5 @@
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/controller/ApplicationConfig.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/controller/CORSFilter.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/model/Marshall.java
+/Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/quartz/QuartzTrigger.java
 /Users/LizSHAN/MORA/03_Juin_Batch_Web_Service/src/main/java/com/mora/model/Param.java

@@ -10,7 +10,7 @@
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
-            <param-value>com.mora.controller.control.CORSFilter</param-value>
+            <param-value>com.mora.controller.CORSFilter</param-value>
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.config.provider.packages</param-name>
@@ -18,8 +18,13 @@
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.config.provider.packages</param-name>
-            <param-value>com.mora.controller.quartz</param-value>
+            <param-value>com.mora.quartz</param-value>
         </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.config.provider.packages</param-name>
+            <param-value>com.mora.jndi</param-value>
+        </init-param>
+        
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -29,4 +34,33 @@
     <listener>
         <listener-class>com.mora.model.MyServlet</listener-class>
     </listener>
+    
+    
+
+    
+    <servlet>
+        <servlet-name>MainServlet</servlet-name>
+        <servlet-class>com.mora.jndi.MainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ConnectionServlet</servlet-name>
+        <servlet-class>com.mora.jndi.TestConnectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConnectionServlet</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    
+    
+    <resource-ref>
+        <res-ref-name>jdbc/DSTest-c3p0</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+    
 </web-app>
